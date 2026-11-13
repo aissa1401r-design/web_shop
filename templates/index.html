@@ -7,13 +7,26 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🌸 متجر الفضائل</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">الرئيسة</a>
+                <a href="https://t.me/sewingFadha_il_bot" class="nav-link" target="_blank">تواصل معنا</a>
+            </div>
+        </div>
+    </nav>
     <h1>أهلاً بك في متجر الفضائل 🌸</h1>
     
     <div class="products-grid">
         {% for product in products %}
         <div class="product-card">
             <!-- صورة مؤقتة (يمكن استبدالها لاحقاً) -->
-            <img src="https://placehold.co/300x200?text=Image" alt="{{ product.name }}">
+            {% if product.photos and product.photos[0] %}
+                <img src="{{ product.photos[0] }}" alt="{{ product.name }}">
+            {% else %}
+                <img src="https://placehold.co/300x200?text=Image" alt="{{ product.name }}">
+            {% endif %}
             <h2>{{ product.name }}</h2>
             <p class="price">السعر: {{ product.price }} دج</p>
             
